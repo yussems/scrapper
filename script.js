@@ -2,13 +2,13 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 async function fetchData() {
-  
   const BILETINIALURL = process.env.ACTIVITY_URL;
 
   try {
     const { data } = await axios.get(BILETINIALURL);
     const $ = await cheerio.load(data);
-    const elemSelector =process.env.HTML_SELECTOR;
+    const elemSelector =
+      "body > main > div.listItems.container.mt-40.mb-40 > div > div.contents > div.contentGrid.flex.directionRowWrap.alignStart.justifyStart > div > a.flex.directionColumn.justifyStart.alignStart > div.eventContents";
     const keys = ["scene", "name", "address", "time"];
     let allActivity = [];
 
@@ -28,7 +28,7 @@ async function fetchData() {
               keyIndx++;
             }
           });
-          allActivity.push({ id: i, ...sceneObj });
+        allActivity.push({ id: i, ...sceneObj });
       }
     });
     return allActivity;
