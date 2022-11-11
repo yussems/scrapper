@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors');
 const { fetchData } = require('./script')
 const app = express()
-const port = 3000 || process.env.PORT
+const port =   process.env.PORT || 3000
 
 require('dotenv').config()
 const corsOptions = {
